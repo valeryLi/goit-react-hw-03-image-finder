@@ -11,18 +11,13 @@ export class Searchbar extends Component {
     this.setState({ query: event.currentTarget.value.toLowerCase() });
   };
 
-  //   handleImageName = ({ target: { value } }) => {
-  //     this.setState({
-  //       query: value.toLowerCase(),
-  //     });
-  //   };
-
   handleSubmit = event => {
     event.preventDefault();
 
     if (this.state.query.trim() === '') {
       return alert('!!!');
     }
+
     this.props.onSubmit(this.state.query);
     this.setState({ query: '' });
   };
@@ -38,7 +33,6 @@ export class Searchbar extends Component {
 
           <input
             className={s.input}
-            name="query"
             value={query}
             type="text"
             autoComplete="off"
