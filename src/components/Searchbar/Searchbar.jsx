@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import s from './Searchbar.module.css';
+import { toast } from 'react-toastify';
 
 export class Searchbar extends Component {
   state = {
@@ -15,11 +16,24 @@ export class Searchbar extends Component {
     event.preventDefault();
 
     if (this.state.query.trim() === '') {
-      return alert('!!!');
+      return this.notifyAboutEmptyField();
     }
 
     this.props.onSubmit(this.state.query);
     this.setState({ query: '' });
+  };
+
+  notifyAboutEmptyField = () => {
+    toast.warn('Please complete this mandatory field.', {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
   };
 
   render() {
